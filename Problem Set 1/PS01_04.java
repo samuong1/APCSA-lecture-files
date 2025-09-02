@@ -12,7 +12,7 @@ public class PS01_04{
         System.out.print("Enter the percent gratuity (ex. 15 for 15%) >>> ");
         double gratuity = input.nextDouble();
         double finalGratuity = (gratuity / 100) * subtotal;
-        double finalTotal = subtotal * finalGratuity;
+        double finalTotal = subtotal + finalGratuity;
         System.out.println("The gratuity is $" + finalGratuity + " and the total is $" + finalTotal);
     }
 }
