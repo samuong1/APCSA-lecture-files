@@ -5,9 +5,10 @@
 public class PS01_05{
     public static void main(String[] args){
         double population = 312032486;
-        double births = 31536000/7;
-        double deaths = 31536000/13;
-        double immigrants = 31536000/45;
+        int time = 60 * 60 * 24 * 365;
+        double births = time/7;
+        double deaths = time/13;
+        double immigrants = time/45;
         int yearcounter = 1;
         while (yearcounter < 6){
             population = population + births - deaths + immigrants;
