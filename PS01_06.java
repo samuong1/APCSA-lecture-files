@@ -1,6 +1,6 @@
 // Title: Sum of digits
 // Name: Sam Uong
-// Date: 8/31/2025
+// Date: 9/2/2025
 
 import java.util.Scanner;
 
