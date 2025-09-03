@@ -9,12 +9,15 @@ public class PS01_06{
         Scanner input = new Scanner(System.in);
         System.out.print("Enter a positive integer that is less than 1000 >>> ");
         int chosenInteger = input.nextInt();
-        int digitOne = chosenInteger % 10;
-        chosenInteger = chosenInteger / 10;
-        int digitTwo = chosenInteger % 10;
-        chosenInteger = chosenInteger / 10;
-        int digitThree = chosenInteger % 10;
-        int sumOfDigits = digitOne + digitTwo + digitThree;
+        int counter = 1;
+        int sumOfDigits = 0;
+        int digit = 0;
+        while (counter < 4){
+            digit = chosenInteger % 10;
+            sumOfDigits += digit;
+            chosenInteger = chosenInteger / 10;
+            counter += 1;
+        }
         System.out.println("The sum of the digits is " + sumOfDigits);
     }
 }
