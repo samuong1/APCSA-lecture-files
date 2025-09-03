@@ -2,7 +2,7 @@
 // Name: Sam Uong
 // Date: 9/2/2025
 
-public class PS01_05{
+public class PopulationChange{
     public static void main(String[] args){
         double population = 312032486;
         int time = 60 * 60 * 24 * 365;

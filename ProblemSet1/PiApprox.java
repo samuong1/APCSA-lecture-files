@@ -2,7 +2,7 @@
 // Name: Sam Uong
 // Date: 9/2/2025
 
-public class PS01_02{
+public class PiApprox{
     public static void main(String[] args){
         /* 
         Version A uses integers for the numerators. This means that when calculating the fractions, Java will drop the decimals.

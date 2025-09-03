@@ -4,7 +4,7 @@
 
 import java.util.Scanner;
 
-public class PS01_04{
+public class GratuityCalc{
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the subtotal (ex. 10.50) >>> ");
