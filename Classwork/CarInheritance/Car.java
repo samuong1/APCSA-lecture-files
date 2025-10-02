@@ -15,6 +15,17 @@ public class Car{
     double miles;
     boolean isFloodDamaged;
 
+    public Car(){
+        make = "Honda";
+        model = "Civic";
+        fuelLevel = 1;
+    }
+    public Car(String newMake, String newModel, int newYear){
+        make = newMake;
+        model = newModel;
+        year = newYear;
+    }
+
     public void displayInfo(){
         out.println("Miles: " + miles + " miles");
         out.println("Fuel Percentage %: " + fuelLevel * 100);
