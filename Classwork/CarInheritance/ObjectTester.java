@@ -15,12 +15,3 @@ public class ObjectTester{
         out.print(theirCar);
     }
 }
-
-class Car{
-    String make;
-    String model;
-    int year;
-    double fuelLevel;
-    double miles;
-    boolean isFloodDamaged;
-}

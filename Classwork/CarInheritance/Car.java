@@ -17,7 +17,7 @@ public class Car{
 
     public void displayInfo(){
         out.println("Miles: " + miles + " miles");
-        out.println("Fuel Percentage %: " + fuelLevel * 100 + );
+        out.println("Fuel Percentage %: " + fuelLevel * 100);
     }
 
     public void carInfo(){
