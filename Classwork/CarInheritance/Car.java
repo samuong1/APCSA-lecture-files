@@ -18,8 +18,9 @@ public class Car{
     public Car(){
         make = "Honda";
         model = "Civic";
-        fuelLevel = 1;
+        year = 1998;
     }
+    
     public Car(String newMake, String newModel, int newYear){
         make = newMake;
         model = newModel;
