@@ -13,7 +13,7 @@ public class ObjectTester{
         // out.println(myCar.make);
         // out.println(yourCar.year);
         // out.println(theirCar.model);
-        // myCar.carInfo();
+        myCar.carInfo();
         boolean eric_is_bad = false;
         out.println("Eric is bad = " + eric_is_bad);
         if (eric_is_bad){
