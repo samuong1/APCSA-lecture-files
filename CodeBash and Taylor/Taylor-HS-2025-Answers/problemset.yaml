@@ -1,0 +1,38 @@
+# Contest Configuration, Problem Set, version 1.0 
+# PC^2 Version: Version 9.10.0 20241212 (Thursday, December 12th 2024 13:20 UTC) Java ver 21.0.8 build 7065 Linux 6.16.8-arch3-1 (amd64) 
+# Created: 2025-10-01 22:09:33 CDT
+problems:
+  - letter: A
+    short-name: dryrun
+    name: 'DryRun'
+    color: 
+    rgb: ''
+    load-data-files: true
+
+  - letter: B
+    short-name: VirtualPumpkinCarving
+    name: 'Virtual Pumpkin Carving'
+    color: 
+    rgb: ''
+    load-data-files: true
+
+  - letter: C
+    short-name: HattoriHanzo
+    name: 'Hattori Hanzo'
+    color: 
+    rgb: ''
+    load-data-files: true
+
+  - letter: D
+    short-name: SpookyBriefcases
+    name: 'Spooky Briefcases'
+    color: 
+    rgb: ''
+    load-data-files: true
+
+  - letter: E
+    short-name: ScarySkeletons
+    name: 'Scary Skeletons'
+    color: 
+    rgb: ''
+    load-data-files: true

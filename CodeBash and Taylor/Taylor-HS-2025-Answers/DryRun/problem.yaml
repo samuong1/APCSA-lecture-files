@@ -1,0 +1,49 @@
+# Problem configuration, version 1.0 
+# PC^2 Version: Version 9.10.0 20241212 (Thursday, December 12th 2024 13:20 UTC) Java ver 21.0.8 build 7065 Linux 6.16.8-arch3-1 (amd64) 
+# Created: 2025-10-01 22:09:33 CDT
+--- 
+
+name: 'DryRun'
+source: 
+author: 
+license: 
+rights_owner: 
+
+hideProblem: false
+showOutputWindow: true
+showCompare: true
+showValidationResults: true
+load-data-files: false
+stop-on-first-failed-test-case: false
+
+# groups: 
+datafile: dryrun.in
+answerfile: dryrun.ans
+
+# validator_flags: 
+
+limits:
+    timeout: 30
+
+sandbox-type: NONE
+sandbox-command-line: './{:sandboxprogramname} {:memlimit} {:timelimit}'
+sandbox-program-name: 'pc2sandbox.sh'
+
+validator: 
+    validatorProg: 'edu.csus.ecs.pc2.validator.pc2Validator.PC2Validator'
+    validatorCmd: '{:validator} {:infile} {:outfile} {:ansfile} {:resfile} '
+    usingInternal: true
+    validatorOption: 1
+
+    use-internal-validator: true
+    use-clics-validator: false
+    use-custom-validator: false
+
+judging-type:
+    computer-judged: true
+    manual-review: false
+    send-prelim-judgement: false
+
+input:
+    readFromSTDIN: false
+

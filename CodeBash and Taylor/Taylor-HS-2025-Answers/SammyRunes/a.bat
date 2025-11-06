@@ -1,0 +1,9 @@
+generator -A 10 -B 10 -C 10 > 2
+generator -A 100 -B 10 -C 10 > 3
+generator -A 10 -B 1000 -C 10 > 4
+generator -A 100 -B 100 -C 100 > 5
+generator -A 100000 -B 100000 -C 100000 > 6
+generator -A 1000 -B 1000 -C 1000 > 7
+generator -A 100000 -B 100000 -C 1000000 > 8
+generator -A 10000 -B 10000 -C 10000 > 9
+generator -A 10000 -B 100 -C 10000 > 10
