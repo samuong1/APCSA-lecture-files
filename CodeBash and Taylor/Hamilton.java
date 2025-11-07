@@ -5,55 +5,127 @@ import java.util.Scanner;
 
 public class Hamilton {
     long accountNumber = 0;
-    int accountPosition = 0;
+    String paddedNumber = null;
     double money = 0.0;
-    boolean isSavings = false;
     public static List<Hamilton> accountList = new ArrayList<>();
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(new File("Hamilton.dat"));
-        //int count = scanner.nextInt();
-        accountOpen(123456, 1500, true);
-        accountOpen(123456, 1500, true);
-        for (int i = 0; i < 4; i++){
-            if(scanner.next() == "OPEN"){
-                //account open method
+        int count = scanner.nextInt();
+        for (int i = 0; i < count; i++){
+            if(scanner.next().equals("OPEN")){
+                long desiredNumber = scanner.nextLong();
+                double desiredMoney = scanner.nextDouble();
+                boolean desiredSavings = false;
+                if (scanner.next().equals("SAVING")){
+                    desiredSavings = true;
+                }
+                accountOpen(desiredNumber, desiredMoney, desiredSavings);
             }
-            else{
-                //withdraw method
+            else if (scanner.next().equals("DEPOSIT")) {
+                String customerNumber = scanner.next();
+                double desiredDeposit = scanner.nextInt();
+                accountDeposit(customerNumber, desiredDeposit);
+            }
+            else if (scanner.next().equals("WITHDRAW")){
+                String customerNumber = scanner.next();
+                double desiredWithdrawl = scanner.nextInt();
+                accountWithdraw(customerNumber, desiredWithdrawl);
+            }
+            if(i != count - 1){
+                scanner.nextLine();
             }
         }
+        scanner.close();
     }
-    private Hamilton(long accountNumber, double money, boolean isSavings){
+    private Hamilton(long accountNumber, double money){
         this.accountNumber = accountNumber;
+        this.paddedNumber = padding(accountNumber);
         this.money = money;
-        this.isSavings = isSavings;
+    }
+    private static String padding(long num){
+        return String.format("%06d", num);
     }
     public static void accountOpen(long accountN, double monies, boolean isItSavings){
-        Hamilton newAccount = new Hamilton(accountN, monies, isItSavings);
+        if(monies < 0){
+            System.out.println("I AM NOT THROWING AWAY MY SHOT"); // Check this? Wording was weird
+            return;
+        }
+        if((isItSavings == true && monies < 1500.00) || (isItSavings == false && monies < 100.00)){
+            System.out.println("INSUFFICIENT STARTING FUND FOR ACCOUNT CREATION");
+            return;
+        }
+        if((accountN <= 0) || (accountN > 999999)){
+            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            return;
+        }
+        Hamilton newAccount = new Hamilton(accountN, monies);
         for (int z = 0; z < accountList.size(); z++){
             if(accountList.get(z).accountNumber == newAccount.accountNumber){
-                for (int i = 0; i < 31; i++) {     
-                    String binaryAccountNumber = Long.toBinaryString(newAccount.accountNumber).trim();
-                    int length = binaryAccountNumber.length();
-                    if (i > 0){
-                        if (binaryAccountNumber.charAt(length - i) == 1){
-                            binaryAccountNumber = binaryAccountNumber.substring(0, length - i) + "0";
-                        }   
-                        else{
-                            binaryAccountNumber = binaryAccountNumber.substring(0, length - i) + "1";
-                        }     
+                for (int i = 0; i < 31; i++) {
+                    long mask = 1L << i; 
+                    long candidate = newAccount.accountNumber ^ mask;
+                    boolean isUnique = true;
+                    for (int j = 0; j < accountList.size(); j++) {
+                        if (accountList.get(j).accountNumber == candidate) {
+                            isUnique = false;
+                            break;
+                        }
                     }
-                    newAccount.accountNumber = Long.parseLong(binaryAccountNumber, 2);
-                    if (accountList.add(newAccount)) {            
-                        break;
-                    }   
+                if (isUnique) {
+                    newAccount.accountNumber = candidate;
+                    newAccount.paddedNumber = padding(newAccount.accountNumber);
+                    accountList.add(newAccount);
+                    System.out.println(newAccount.paddedNumber);
+                    return; 
+                    }
                 }
             }
         }
         accountList.add(newAccount);
-        System.out.println(newAccount.accountNumber);
+        System.out.println(newAccount.paddedNumber);   
     }
-    public double accountWithdraw(int accountNo, double monies2){
-        return money;
+
+    public static void accountWithdraw(String accountN, double monies2){
+        Hamilton temporary = null;
+        for (Hamilton h : accountList){
+            if (h.paddedNumber.equals(accountN)){
+                temporary = h;
+                break;
+            }
+        }
+        if (temporary == null){
+            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            return;
+        }
+        if (temporary.money < monies2){
+            System.out.println("INSUFFICIENT FUNDS FOR REQUESTED WITHDRAWAL");
+            return;
+        }
+        if (monies2 < 0){
+            System.out.println("I AM NOT THROWING AWAY MY SHOT");
+            return;
+        }
+        temporary.money -= monies2;
+        System.out.println(String.format("%.2f", temporary.money));
+    }
+
+    public static void accountDeposit(String accountN, double monies3){
+        Hamilton temporary = null;
+        for (Hamilton h : accountList){
+            if (h.paddedNumber.equals(accountN)){
+                temporary = h;
+                break;
+            }
+        }
+        if (temporary == null){
+            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            return;
+        }
+        if (monies3 < 0){
+            System.out.println("I AM NOT THROWING AWAY MY SHOT");
+            return;
+        }
+        temporary.money += monies3;
+        System.out.println(String.format("%.2f", temporary.money));
     }
 }
