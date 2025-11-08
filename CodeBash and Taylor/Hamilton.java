@@ -30,8 +30,8 @@ public class Hamilton {
                 }
                 case "WITHDRAW" -> {
                     String customerNumber2 = scanner.next();
-                    double desiredWithdrawl = scanner.nextDouble();
-                    accountWithdraw(customerNumber2, desiredWithdrawl);
+                    double desiredWithdrawal = scanner.nextDouble();
+                    accountWithdraw(customerNumber2, desiredWithdrawal);
                 }
             }
             if(i != count - 1){

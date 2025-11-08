@@ -25,19 +25,19 @@ public class SpookyBriefcases {
             xCoordinate = scanner.nextInt();
             yCoordinate = scanner.nextInt();
             if ("SPOOKY".equals(scanner.next())){
-                currentMass = ((int) Math.pow(currentMass, 2)) * numberOfSpooky;
+                currentMass = ((int) Math.pow(currentMass, 2)); // * numberOfSpooky
                 numberOfSpooky++;
             }
             if (xCoordinate < leftXBound){
                 leftXBound = xCoordinate;
             }
-            else if(xCoordinate > rightXBound){
+            if(xCoordinate > rightXBound){
                 rightXBound = xCoordinate;
             }
             if (yCoordinate < bottomYBound){
                 bottomYBound = yCoordinate;
             }
-            else if(yCoordinate > topYBound){
+            if(yCoordinate > topYBound){
                 topYBound = yCoordinate;
             }
             centerX = currentMass * xCoordinate;
@@ -55,7 +55,7 @@ public class SpookyBriefcases {
             alcantar = false;
         }
         
-        System.out.println("(" + xTotalCoordinate + ", " + yTotalCoordinate + ")");
+        System.out.printf("(%.4f, %.4f)%n", xTotalCoordinate, yTotalCoordinate);
         if (alcantar) {
             System.out.println("SPOOKY!");
         }
