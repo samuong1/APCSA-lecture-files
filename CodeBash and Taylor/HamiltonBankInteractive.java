@@ -186,6 +186,7 @@ public class HamiltonBankInteractive {
                             System.out.println(" - \"HISTORY HAS ITS EYES ON YOU\" - You inputted an incorrect account number (negative, zero, greater than 999999); input your correct account number.");
                             System.out.println(" - \"I AM NOT THROWING AWAY MY SHOT\" - You attempted to withdraw or deposit a negative amount of money; input a positive amount of money.");
                             System.out.println(" - There is no output from the machine - You typed in a query wrong. Type the query in correctly.");
+                            System.out.println(" - \"YOUR COMMAND: \" keeps repeating - You typed in a query wrong. Type the query in correctly.");
                             System.out.println(" - It throws an error related to code - An internal error has happened. Contact administrators.");
                             System.out.println();
                             System.out.println("To access the Help Menu again, type \"HELP\" into the terminal again.\n");
