@@ -12,24 +12,27 @@ public class Hamilton {
         Scanner scanner = new Scanner(new File("Hamilton.dat"));
         int count = scanner.nextInt();
         for (int i = 0; i < count; i++){
-            if(scanner.next().equals("OPEN")){
-                long desiredNumber = scanner.nextLong();
-                double desiredMoney = scanner.nextDouble();
-                boolean desiredSavings = false;
-                if (scanner.next().equals("SAVING")){
-                    desiredSavings = true;
+            String operations = scanner.next();
+            switch (operations) {
+                case "OPEN" -> {
+                    long desiredNumber = scanner.nextLong();
+                    double desiredMoney = scanner.nextDouble();
+                    boolean desiredSavings = false;
+                    if (scanner.next().equals("SAVING")) {
+                        desiredSavings = true;
+                    }
+                    accountOpen(desiredNumber, desiredMoney, desiredSavings);
                 }
-                accountOpen(desiredNumber, desiredMoney, desiredSavings);
-            }
-            else if (scanner.next().equals("DEPOSIT")) {
-                String customerNumber = scanner.next();
-                double desiredDeposit = scanner.nextInt();
-                accountDeposit(customerNumber, desiredDeposit);
-            }
-            else if (scanner.next().equals("WITHDRAW")){
-                String customerNumber = scanner.next();
-                double desiredWithdrawl = scanner.nextInt();
-                accountWithdraw(customerNumber, desiredWithdrawl);
+                case "DEPOSIT" -> {
+                    String customerNumber = scanner.next();
+                    double desiredDeposit = scanner.nextDouble();
+                    accountDeposit(customerNumber, desiredDeposit);
+                }
+                case "WITHDRAW" -> {
+                    String customerNumber2 = scanner.next();
+                    double desiredWithdrawl = scanner.nextDouble();
+                    accountWithdraw(customerNumber2, desiredWithdrawl);
+                }
             }
             if(i != count - 1){
                 scanner.nextLine();
@@ -46,16 +49,16 @@ public class Hamilton {
         return String.format("%06d", num);
     }
     public static void accountOpen(long accountN, double monies, boolean isItSavings){
+        if((accountN <= 0) || (accountN > 999999)){
+            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            return;
+        }
         if(monies < 0){
             System.out.println("I AM NOT THROWING AWAY MY SHOT"); // Check this? Wording was weird
             return;
         }
         if((isItSavings == true && monies < 1500.00) || (isItSavings == false && monies < 100.00)){
             System.out.println("INSUFFICIENT STARTING FUND FOR ACCOUNT CREATION");
-            return;
-        }
-        if((accountN <= 0) || (accountN > 999999)){
-            System.out.println("HISTORY HAS ITS EYES ON YOU");
             return;
         }
         Hamilton newAccount = new Hamilton(accountN, monies);
