@@ -81,23 +81,30 @@ public class HamiltonBankInteractive {
                     accountWithdraw(customerNumber2, desiredWithdrawal);
                     System.out.println();
                 }
+                case "ACCOUNT" -> {
+                    String customerNumber3 = scanner.next();
+                    accountCheck(customerNumber3);
+                    System.out.println();
+                }
                 case "HELP" ->{
                     System.out.println("\nWhat do you need help with today? Type in the number of the question you want answered.");
                     System.out.println("  1 - INTRODUCE ME TO THE MACHINE");
                     System.out.println("  2 - ACCOUNT BASICS");
                     System.out.println("  3 - OPENING AN ACCOUNT");
-                    System.out.println("  4 - DEPOSITING INTO AN ACCOUNT");
-                    System.out.println("  5 - WITHDRAWING FROM AN ACCOUNT");
-                    System.out.println("  6 - COMMON ERRORS");
-                    System.out.println("  7 - RANDOM ALCANTAR FACT");
-                    System.out.println("  8 - ABOUT THIS MACHINE\n");
+                    System.out.println("  4 - CHECKING AN ACCOUNT");
+                    System.out.println("  5 - DEPOSITING INTO AN ACCOUNT");
+                    System.out.println("  6 - WITHDRAWING FROM AN ACCOUNT");
+                    System.out.println("  7 - COMMON ERRORS");
+                    System.out.println("  8 - RANDOM ALCANTAR FACT");
+                    System.out.println("  9 - ABOUT THIS MACHINE\n");
                     System.out.print("YOUR COMMAND: ");
                     String helpSelection = scanner.next();
                     System.out.println();
                     switch(helpSelection){
                         case "1" ->{
                             System.out.println("Welcome to the Official Hamilton Banking System!");
-                            System.out.println("As long as this system is running, your data will be stored securely using our patented Alcantar Security Technology™.");
+                            System.out.println("As long as this system is running, your data will be stored securely using our patented Alcantar Security Technology.");
+                            System.out.println("This interactive is based on CodeBash2025's Problem 7. This interactive has additional features, but still retains the core concepts tested.");
                             System.out.println("To learn more about this machine, type \"HELP\" into the terminal again, and choose another option!\n");
                         }
                         case "2" ->{
@@ -129,6 +136,22 @@ public class HamiltonBankInteractive {
                             System.out.println("* If your account has less than 6 digits, you will need to \"pad\" your number to access your account. EX: 3845 --> 003845\n");
                         }
                         case "4" ->{
+                            System.out.println("To check your account, you need to type the ACCOUNT command.");
+                            System.out.println("The syntax goes as follows: ");
+                            System.out.println();
+                            System.out.println("ACCOUNT [account number]");
+                            System.out.println();
+                            System.out.println("[account number] - Input your account number, from 000001 to 999999.*");
+                            System.out.println();
+                            System.out.println("EX: ACCOUNT 123456");
+                            System.out.println();
+                            System.out.println("The system will print out your account number and your current balance.");
+                            System.out.println();
+                            System.out.println("To access the Help Menu again, type \"HELP\" into the terminal again.");
+                            System.out.println();
+                            System.out.println("* If your account has less than 6 digits, you will need to \"pad\" your number to access your account. EX: 3845 --> 003845\n");
+                        }
+                        case "5" ->{
                             System.out.println("To deposit into an account, you need to type the DEPOSIT command.");
                             System.out.println("The syntax goes as follows: ");
                             System.out.println();
@@ -145,7 +168,7 @@ public class HamiltonBankInteractive {
                             System.out.println();
                             System.out.println("* If your account has less than 6 digits, you will need to \"pad\" your number to access your account. EX: 3845 --> 003845\n");
                         }
-                        case "5" ->{
+                        case "6" ->{
                             System.out.println("To withdraw money from an account, you need to type the WITHDRAW command.");
                             System.out.println("The syntax goes as follows: ");
                             System.out.println();
@@ -162,7 +185,7 @@ public class HamiltonBankInteractive {
                             System.out.println();
                             System.out.println("* If your account has less than 6 digits, you will need to \"pad\" your number to access your account. EX: 3845 --> 003845\n");
                         }
-                        case "6" ->{
+                        case "7" ->{
                             System.out.println("Common Errors:");
                             System.out.println();
                             System.out.println(" - \"INSUFFICIENT STARTING FUNDS FOR ACCOUNT CREATION\" - Your starting investment is too low; you need more money to open this account.");
@@ -175,7 +198,7 @@ public class HamiltonBankInteractive {
                             System.out.println();
                             System.out.println("To access the Help Menu again, type \"HELP\" into the terminal again.\n");
                         }
-                        case "7" ->{
+                        case "8" ->{
                             int randomNumber = (int) (Math.random() * 10) + 1;
                             String randomNumberString = Integer.toString(randomNumber);
                             System.out.println("One of ten fun facts about Mr. Alcantar: ");
@@ -221,7 +244,7 @@ public class HamiltonBankInteractive {
                             }
                             System.out.println("\nTo access the Help Menu again, type \"HELP\" into the terminal again.\n");
                         }
-                        case "8" ->{
+                        case "9" ->{
                             System.out.println("ABOUT THIS MACHINE:");
                             System.out.println("Owned by Hamilton Banking System Corporation");
                             System.out.println("FDIC Insured");
@@ -253,17 +276,33 @@ public class HamiltonBankInteractive {
     private static String padding(long num){
         return String.format("%06d", num);
     }
+    public static void accountCheck(String accountN){
+        HamiltonBankInteractive temporary = null;
+        for (HamiltonBankInteractive h : accountList){
+            if (h.paddedNumber.equals(accountN)){
+                temporary = h;
+                break;
+            }
+        }
+        if (temporary == null){
+            System.out.println("\nHISTORY HAS ITS EYES ON YOU");
+            return;
+        }
+        System.out.println("\nACCOUNT NUMBER: " + temporary.accountNumber);
+        System.out.print("CURRENT BALANCE: ");
+        System.out.println(String.format("%.2f", temporary.money));
+    }
     public static void accountOpen(long accountN, double monies, boolean isItSavings){
         if((accountN <= 0) || (accountN > 999999)){
-            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            System.out.println("\nHISTORY HAS ITS EYES ON YOU");
             return;
         }
         if(monies < 0){
-            System.out.println("I AM NOT THROWING AWAY MY SHOT"); // Check this? Wording was weird
+            System.out.println("\nI AM NOT THROWING AWAY MY SHOT");
             return;
         }
         if((isItSavings == true && monies < 1500.00) || (isItSavings == false && monies < 100.00)){
-            System.out.println("INSUFFICIENT STARTING FUND FOR ACCOUNT CREATION");
+            System.out.println("\nINSUFFICIENT STARTING FUND FOR ACCOUNT CREATION");
             return;
         }
         HamiltonBankInteractive newAccount = new HamiltonBankInteractive(accountN, monies);
@@ -283,14 +322,20 @@ public class HamiltonBankInteractive {
                     newAccount.accountNumber = candidate;
                     newAccount.paddedNumber = padding(newAccount.accountNumber);
                     accountList.add(newAccount);
-                    System.out.println(newAccount.paddedNumber);
+                    System.out.println("\nCongratulations on creating a new account!"); 
+                    System.out.println("Your new account number: " + newAccount.paddedNumber); 
+                    System.out.print("Your current balance: $");
+                    System.out.println(String.format("%.2f", newAccount.money));
                     return; 
                     }
                 }
             }
         }
         accountList.add(newAccount);
-        System.out.println(newAccount.paddedNumber);   
+        System.out.println("\nCongratulations on creating a new account!"); 
+        System.out.println("Your new account number: " + newAccount.paddedNumber); 
+        System.out.print("Your current balance: $");
+        System.out.println(String.format("%.2f", newAccount.money));
     }
 
     public static void accountWithdraw(String accountN, double monies2){
@@ -302,18 +347,19 @@ public class HamiltonBankInteractive {
             }
         }
         if (temporary == null){
-            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            System.out.println("\nHISTORY HAS ITS EYES ON YOU");
             return;
         }
         if (temporary.money < monies2){
-            System.out.println("INSUFFICIENT FUNDS FOR REQUESTED WITHDRAWAL");
+            System.out.println("\nINSUFFICIENT FUNDS FOR REQUESTED WITHDRAWAL");
             return;
         }
         if (monies2 < 0){
-            System.out.println("I AM NOT THROWING AWAY MY SHOT");
+            System.out.println("\nI AM NOT THROWING AWAY MY SHOT");
             return;
         }
         temporary.money -= monies2;
+        System.out.print("\nYOUR NEW BALANCE: $");
         System.out.println(String.format("%.2f", temporary.money));
     }
 
@@ -326,14 +372,15 @@ public class HamiltonBankInteractive {
             }
         }
         if (temporary == null){
-            System.out.println("HISTORY HAS ITS EYES ON YOU");
+            System.out.println("\nHISTORY HAS ITS EYES ON YOU");
             return;
         }
         if (monies3 < 0){
-            System.out.println("I AM NOT THROWING AWAY MY SHOT");
+            System.out.println("\nI AM NOT THROWING AWAY MY SHOT");
             return;
         }
         temporary.money += monies3;
+        System.out.print("\nYOUR NEW BALANCE: $");
         System.out.println(String.format("%.2f", temporary.money));
     }
 }
