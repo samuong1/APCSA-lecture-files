@@ -36,23 +36,7 @@ public class HamiltonBankInteractive {
                            |                 \\___ \\  \\   / \\___ \\   | |  |  __| | |\\/| |                      |\r
                            |                 ____) |  | |  ____) |  | |  | |____| |  | |                      |\r
                            |                |_____/   |_| |_____/   |_|  |______|_|  |_|                      |\r
-                           |                                                                                  |""" //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        );
+                           |                                                                                  |""");
         System.out.println("|                           Your trusted bank since 1791                           |");
         Thread.sleep(100);
         System.out.println("|                                                                                  |");
